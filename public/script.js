@@ -4,11 +4,7 @@ const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
 
-var peer = new Peer(undefined, {
-  path: "/peerjs",
-  host: "/",
-  port: "4000",
-});
+var peer = new Peer();
 
 let myVideoStream;
 navigator.mediaDevices
@@ -36,7 +32,7 @@ navigator.mediaDevices
 
 const connectToNewUser = (userId, stream) => {
   const call = peer.call(userId, stream);
-  const video = document.createRoom("video");
+  const video = document.createElement("video");
 
   call.on("stream", (userVideoStream) => {
     addVideoStream(video, userVideoStream);
